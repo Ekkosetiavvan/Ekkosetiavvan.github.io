@@ -33,14 +33,14 @@
         </div>
         <div class="row justify-content-center">
           <div class="col-md-5">
-            <form>
+            <form name="Form">
               <div class="mb-3">
                 <label for="nama" class="form-label">Nama</label>
-                <input type="text" class="form-control" id="nama" aria-describedby="name" />
+                <input type="text" class="form-control" id="nama" aria-describedby="name" name="nama" />
               </div>
               <div class="mb-3">
                 <label for="Email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" aria-describedby="email" />
+                <input type="email" class="form-control" id="email" aria-describedby="email" name="email" />
               </div>
               <button type="submit" class="btn btn-primary">Kirim</button>
             </form>
@@ -50,5 +50,16 @@
     </section>
     <!-- AKhir Form -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script>
+      const scriptURL = "<https://script.google.com/macros/s/AKfycby0RF_M5kAtLDvfUtvXiNqUq8uqW6Km0nQtrlp5ouDAU841cU7CAmFdVfessDv5q5RY/exec>";
+      const form = document.forms["Form"];
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        fetch(scriptURL, { method: "POST", body: new FormData(form) })
+          .then((response) => console.log("Success!", response))
+          .catch((error) => console.error("Error!", error.message));
+      });
+    </script>
   </body>
 </html>
